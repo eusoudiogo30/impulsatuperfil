@@ -232,17 +232,12 @@ function validateCustomer(customer = {}) {
  * Teste da API
  */
 app.get("/api/health", (_req, res) => {
-  return res.json({
-    success: true,
-    message: "Backend online",
-    xpagConfigured: Boolean(
-      process.env.XPAG_CLIENT_ID &&
-        process.env.XPAG_CLIENT_SECRET
-    ),
-    webhookConfigured: Boolean(
-      process.env.XPAG_WEBHOOK_SECRET
-    ),
-  });
+  res.json({
+  success: true,
+  clientId: process.env.XPAG_CLIENT_ID || "NÃO EXISTE",
+  clientSecret: process.env.XPAG_CLIENT_SECRET ? "OK" : "NÃO EXISTE",
+  webhook: process.env.XPAG_WEBHOOK_SECRET || "NÃO EXISTE",
+});
 });
 
 /**
